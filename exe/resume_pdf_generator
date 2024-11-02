@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require "resume_pdf_generator"
+require "json"
+
+input_data = JSON.parse(File.read(ARGV[0]), symbolize_names: true)
+generator = ResumePdfGenerator::Generator.new(input_data)
+File.open("resume_output.pdf", "wb") { |f| f.write(generator.generate_pdf) }
